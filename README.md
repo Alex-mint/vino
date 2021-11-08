@@ -17,10 +17,11 @@ pip install -r requirements.txt
   
 ### Запуск
 - Положите вашь Excel файл (wine.xlsx) в корень папки с проектом.
+- Запустите сайт командой:
 ```python
 python main.py -f wine.xlsx
 ```
-- Перейдите на сайт по адресу
+- Перейдите на сайт по адресу:
 ```python
 http://127.0.0.1:8000
 ```
