@@ -18,13 +18,13 @@ def create_parser():
 
 
 def get_winery_age():
-    present_year = int(datetime.datetime.now().year)
+    present_year = datetime.datetime.now().year
     winery_age = present_year - FOUNDATION_YEAR
     return winery_age
 
 
-def get_catalog(file):
-    catalog = pandas.read_excel(file, sheet_name='Лист1', na_values=None,
+def get_catalog(file_path):
+    catalog = pandas.read_excel(file_path, sheet_name='Лист1', na_values=None,
                                 keep_default_na=False).to_dict(orient='records')
     categorized_catalog = defaultdict(list)
     for drink in catalog:
@@ -35,9 +35,11 @@ def get_catalog(file):
 def main():
     args = create_parser()
     catalog = get_catalog(args.file)
+
     env = Environment(loader=FileSystemLoader('.'),
                       autoescape=select_autoescape(['html', 'xml']))
     template = env.get_template('template.html')
+
     rendered_page = template.render(
         years=f'Уже {get_winery_age()} лет с вами',
         catalog=catalog
