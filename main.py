@@ -31,7 +31,6 @@ def get_catalog(file):
 
 def main():
     args = create_parser()
-    #file = args.file #'wine.xlsx'
     catalog = get_catalog(args.file)
     env = Environment(loader=FileSystemLoader('.'),
                       autoescape=select_autoescape(['html', 'xml']))
